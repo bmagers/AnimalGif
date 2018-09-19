@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    var topics = ["dog", "cat", "squirrel", "raccoon", "bald eagle", "rat", "fox", "coyote", "rabbit", "orca", "sea lion"];
+    var topics = ["squirrel", "raccoon", "cat", "rabbit", "sea lion", "gecko"];
     makeButtons();
 
     function makeButtons() {
@@ -8,6 +8,7 @@ $(document).ready(function() {
         topics.forEach(function(topic) {
             var newButton = $("<button>").addClass("topicButton").attr("id", topic).text(topic);
             newButton.on("click", function() {
+                $(".gifDiv").remove();
                 getGifs(this.id);
             });
             $("#ButtonArea").append(newButton);
@@ -44,7 +45,7 @@ $(document).ready(function() {
                 image.attr("data-still", imageStill);
                 gifDiv.append(p);
                 gifDiv.append(image);
-                $("#ImageArea").append(gifDiv);
+                $("#ImageArea").prepend(gifDiv);
             }
         });
     }
@@ -59,8 +60,5 @@ $(document).ready(function() {
             $(this).attr("data-state", "still");
         }
     });
-
-
-
 
 });

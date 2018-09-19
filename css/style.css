@@ -1,4 +1,40 @@
+body {
+    background-color: navy;
+    font-family: sans-serif;
+}
+
 .gifDiv {
+    float: left;
+    padding: 5px;
+}
+
+.gifImg {
+    padding: 5px;
+}
+
+#ButtonArea {
+    background-color: lightblue;
+}
+
+.topicButton {
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    margin: 3px;
+    border: 0;
+    border-radius: 3px;
+    font-size: 18px;
+}
+
+#AddButtonArea {
+    background-color: lightblue;
+    padding: 10px;
+    text-align: right;
+}
+
+#ImageArea {
+    color: lightblue;
+    padding: 10px;
     float: left;
     clear: both;
 }
