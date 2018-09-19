@@ -1,13 +1,30 @@
 $(document).ready(function() {
 
     var topics = ["dog", "cat", "squirrel", "raccoon", "bald eagle", "rat", "fox", "coyote", "rabbit", "orca", "sea lion"];
-    topics.forEach(function(topic) {
-        var newButton = $("<button>").attr("id", topic).text(topic);
-        newButton.on("click", function() {
-            getGifs(this.id);
+    makeButtons();
+
+    function makeButtons() {
+        $(".topicButton").remove();
+        topics.forEach(function(topic) {
+            var newButton = $("<button>").addClass("topicButton").attr("id", topic).text(topic);
+            newButton.on("click", function() {
+                getGifs(this.id);
+            });
+            $("#ButtonArea").append(newButton);
         });
-        $("#ImageArea").append(newButton);
+    }
+
+    var animalAddButton = $("<button>").text("Add an animal: ").attr("id", "btnAddAnimal");
+    var animalAddForm = $("<input>").attr("id", "animalAddForm");
+    animalAddButton.on("click", function() {
+        var newAnimal = animalAddForm.val().trim();
+        animalAddForm.val("");
+        if (newAnimal.length > 1) {
+            topics.push(newAnimal);
+            makeButtons();
+        }
     });
+    $("#AddButtonArea").append(animalAddButton).append(animalAddForm);
 
     function getGifs(topic) {
         var gifsUrl = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=BSEP7a1S74kX6ETXGCDeTDZ2A4uwiO4K&limit=10";
@@ -25,8 +42,8 @@ $(document).ready(function() {
                 image.attr("data-state", "still");
                 image.attr("data-animated", imageAnimated);
                 image.attr("data-still", imageStill);
-                gifDiv.append(image);
                 gifDiv.append(p);
+                gifDiv.append(image);
                 $("#ImageArea").append(gifDiv);
             }
         });
